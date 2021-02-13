@@ -34,10 +34,10 @@ def stripToJson(readdata):
     return readdata            
 
 '''
-Funkcia printData(data) vypisuje ziadane informacie o pocasii zo slovniku. (dictionary)
+Funkcia printData(data) vypisuje ziadane informacie o pocasi zo slovniku. (dictionary)
 '''
 def printData(dictionary): 
-    try:                    
+    try:
         print("Cityname: %s" % dictionary["name"])
         print("Weather: %s" % dictionary["weather"][0]["description"])
         print("Temperature: %s \xb0C" % dictionary["main"]["temp"]) 
@@ -49,7 +49,7 @@ def printData(dictionary):
         else:
             print("Wind-degree: - ")
     except:
-        print("Error while printing information about this city!")
+        print("Missing information in json!")
         exit(1)
 
 '''
@@ -65,7 +65,11 @@ def main():
     if (argc == 3):         
         try:                
             api_key = sys.argv[1]
-            city = sys.argv[2] #poziadavka je enkodovany retazec b -> byte
+            city = sys.argv[2]
+            if (city == ""):
+                print("No city name was passed as argument!")
+                return 1
+            #poziadavka je enkodovany retazec b -> byte
             request = b"GET /data/2.5/weather?q=" + city.lower().encode() + b"&APPID=" + api_key.encode() + b"&units=metric HTTP/1.1\r\nHost: api.openweathermap.org\r\n\r\n"
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s: #pouzivam with, aby som nemusel po skonceni volat s.close()
                 s.connect((HOST, PORT)) 

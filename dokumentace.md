@@ -5,6 +5,8 @@ Pre prístup je nutná bezplatná registrácia a získánie kľúča, ktorý sa 
     
 Ak chceme získať informácie o meste s viacslovným názvom, musíme názov vložiť medzi `""` . 
 Iba tak sa úspešne načíta celý názov ako jeden argument.
+Pre konkretizáciu mesta (existuje viacero miest s rovnakým názvom) poskytuje API možnosť pridať za názov mesta aj informáciu o krajine.
+Napr. `... city=Brno,CZ` , `... city="novy hrozenkov,cz"`.
 
 ## O projekte
 Skript v jazyku Python - (klient rozhrania OpenWeatherMap), ktorý pomocou HTTP dotazu získa vybrané informácie o počasí z dátového zdroja. 
